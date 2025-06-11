@@ -1,0 +1,23 @@
+name: Telegram Notification
+
+on:
+    push:
+        branches: ["main"]
+    pull_request: 
+        branches: ["main"]
+
+jobs:
+    notify:
+        runs-on: ubunty-latest
+        steps:
+            - name: Send Telegram Message
+            run: | 
+                MESSAGE="🚀Новый коммит ${{ github.repository }} от ${{ github.actor }}:
+                Commit: \`${{ github.event.head_commit.message }}\`
+                View: ${{ github.event.head_commit.url }}"
+
+                curl -s -X POST \
+                    https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
+                    -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+                    -d text="$MESSAGE" \
+                    -d parse_mode="Markdown"
