@@ -1,0 +1,20 @@
+# macOS system files
+.DS_Store
+
+# Python cache and environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv
+.env
+
+# Project folders
+folder_text/
+folder_test/
+folder_audio/
+folder_video/
+
+# Logs and temporary files
+*.log
+*.tmp
